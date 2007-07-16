@@ -1,0 +1,38 @@
+<settings>
+<servers>
+	<server>
+		<user></user>
+		<password></password>
+		<host></host>
+		<port></port>
+		<version></version>
+	</server>
+
+	
+</servers>
+<!-- namespace pid and version information is extracted dynamically from the Fedora Repository at the time of connection -->
+<HandleNamespace>1959.8</HandleNamespace>
+
+<marcDatastreamID>MARCDESC</marcDatastreamID>
+<dcDatastreamID>DC</dcDatastreamID>
+
+<marcDatastreamLabel>Marc</marcDatastreamLabel>
+<dcDatastreamLabel>Dc</dcDatastreamLabel>
+
+
+<uploadDir>./library/uploads/</uploadDir>
+<uploadNum>10</uploadNum>
+<uploadSize>100048576</uploadSize>
+
+<uploadFileType>
+<file>txt</file>
+<file>xml</file>
+<file>pdf</file>
+<file>doc</file>
+<file>gif</file>
+<file>jpg</file>
+<file>j2k</file>
+<file>bmp</file>
+</uploadFileType>
+
+</settings>
