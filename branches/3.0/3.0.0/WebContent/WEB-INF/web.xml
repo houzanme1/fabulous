@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+	<display-name>Fabulous</display-name>
+	
+	<servlet>
+		<description>Renders MARCXML into HTML form for editing</description>
+		<display-name>DisplayMarcxmlAsFormServlet</display-name>
+		<servlet-name>DisplayMarcxmlAsFormServlet</servlet-name>
+		<servlet-class>org.unisa.fab.DisplayMarcxmlAsFormServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>creates MARCXML from submitted values from the form</description>
+		<display-name>ProcessMetadataFormServlet</display-name>
+		<servlet-name>ProcessMetadataFormServlet</servlet-name>
+		<servlet-class>org.unisa.fab.ProcessMetadataFormServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>test class to test the submitted values</description>
+		<display-name>ValuesSubmitted</display-name>
+		<servlet-name>ValuesSubmitted</servlet-name>
+		<servlet-class>org.unisa.fab.ValuesSubmitted</servlet-class>
+	</servlet>
+	<servlet>
+		<description>renders a form to create new object</description>
+		<display-name>CreateNewServlet</display-name>
+		<servlet-name>CreateNewServlet</servlet-name>
+		<servlet-class>org.unisa.fab.CreateNewServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>DisplaySearchResults</display-name>
+		<servlet-name>DisplaySearchResults</servlet-name>
+		<servlet-class>org.unisa.fab.DisplaySearchResults</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		ProcessRWSearch</display-name>
+		<servlet-name>ProcessRWSearch</servlet-name>
+		<servlet-class>
+		org.unisa.fab.ProcessRWSearch</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>DisplayMarcxmlAsFormServlet</servlet-name>
+		<url-pattern>/DisplayMarcxmlAsFormServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ProcessMetadataFormServlet</servlet-name>
+		<url-pattern>/ProcessMetadataFormServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ValuesSubmitted</servlet-name>
+		<url-pattern>/ValuesSubmitted</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreateNewServlet</servlet-name>
+		<url-pattern>/CreateNewServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DisplaySearchResults</servlet-name>
+		<url-pattern>/DisplaySearchResults</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ProcessRWSearch</servlet-name>
+		<url-pattern>/ProcessRWSearch</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+	
+	<security-constraint>
+   <web-resource-collection>
+      <web-resource-name>Fabulous</web-resource-name>
+      <url-pattern>/*</url-pattern>
+   </web-resource-collection>
+   <auth-constraint>
+      <role-name>FabAdmin</role-name>
+   </auth-constraint>
+</security-constraint>
+
+<login-config>
+   <auth-method>FORM</auth-method>
+   <realm-name>Fabulous</realm-name>
+   <form-login-config>
+      <form-login-page>/login.jsp</form-login-page>
+      <form-error-page>/logonError.jsp</form-error-page>
+   </form-login-config>
+</login-config>
+	
+</web-app>
+
