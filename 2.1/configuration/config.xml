@@ -1,0 +1,50 @@
+<!-- Fabulous configuration Settings ver1 - Prashant.Pandey@unisa.edu.au-->
+<settings>
+	<!-- Server Information; these values gets prepopulated in the fabulous login screen -->
+	<!--	Multiple server instances can be added for the application to connect to them within <server></server>-->
+	<servers>
+		<!-- fedora server instance0 -->
+		<!-- user = Fedora admin username -->
+		<!-- password = Fedora admin password -->
+		<!-- host = Fedora hostname -->
+		<!-- port = Fedora port number -->
+		<!-- version = Fedora version -->
+		<server>
+			<user>fedora username</user>
+			<password>fedora password</password>
+			<host>fedora host</host>
+			<port>fedora port</port>
+			<version>fedora version</version>
+		</server>
+
+	</servers>
+	<!-- HandleNamespace -->
+	<!-- This is required to retrieve the handle information from DC metadata before updating with the modified DC -->
+	<!-- if using URI instead of handles, use a token which can be used to identify the Dc:identifier to be carried over to the updated DC datastream -->
+        <HandleNamespace>1959.8</HandleNamespace>
+	<!-- The datastream ID for Marc and Dc datastream, these are required to retrieve the datastreams for selected objects-->
+	<marcDatastreamID>MARCDESC</marcDatastreamID>
+	<dcDatastreamID>DC</dcDatastreamID>
+	<!-- The datastream Labels for Marc and Dc datastream, these are required for updating the datastreams of selected objects-->
+	<marcDatastreamLabel>Marc</marcDatastreamLabel>
+	<dcDatastreamLabel>Dc</dcDatastreamLabel>
+	<!--The uploads directory path for uploaded files on the web server, no need to change, at present this value is hardcoded into the code aswell.....need to clean up*** -->
+	<uploadDir>./library/uploads/</uploadDir>
+	<!-- The total number of uploads allowed per transaction. Please be carefull while changing the value, too big a value shall cause and exception time out of the PHP script -->
+	<uploadNum>10</uploadNum>
+	<!--Allowed upload size value of a content file, this value is overriden by the PHP upload value, set in Php.ini file, The smallest of the two values is used as the check condition at runtime -->
+	<!-- at present this value is hardcoded into the code aswell.....need to clean up*** -->
+        <uploadSize>100048576</uploadSize>
+	<!--Allowed extensions for the uploaded files -->
+	<!-- at present this value is hardcoded into the code aswell.....need to clean up*** -->
+	<uploadFileType>
+		<file>txt</file>
+		<file>xml</file>
+		<file>pdf</file>
+		<file>doc</file>
+		<file>gif</file>
+		<file>jpg</file>
+		<file>j2k</file>
+		<file>bmp</file>
+	</uploadFileType>
+</settings>
