@@ -17,7 +17,13 @@
 
 
 <div id="main">
-	<H1>FABULOUS Version 3.0 User Guide</H1><br />
+<H1>About</H1>
+<br/>
+<p>Project Home: <a href="http://code.google.com/p/fabulous/">Fabulous on Google Code</a></p>
+<p>Project Lead: Prashant Pandey (Library, university of South Australia)</p>
+<p><em>Sponsored by DEST through the ARROW Project Mini-Project Scheme. The ARROW Project is funded under the Systemic Infrastructure Initiative as part of the Commonwealth Government&#146;s Backing Australia&#146;s Ability</em></p>
+<br/>
+	<H2>FABULOUS Version 3.0 User Guide</H2>
 <p>The Fedora/Arrow Batch Utilities with Lots Of User Services (FABULOUS) application
   is designed to improve the efficiency of repository content management by incorporating
 a number of functions designed for administrative purposes.</p>
@@ -25,10 +31,10 @@ a number of functions designed for administrative purposes.</p>
 <ul>
   <li>The ability to activate or deactivate various datastreams of a particular
   object making them visible or invisible to users of the repository.</li>
-  <li>    Enabling multiple uploads of research materials to the repository (or
-  batch content ingests).</li>
+  <li>    Providing form based editing interface for MARC xml.</li>
   <li>    Providing an editing functionality for multiple (datastreams or metadata)
   within the repository (or batch metadata editing).</li>
+  <li>    Ability to plug into various Front-end applications like VITAL etc.</li>
 </ul>
 <p>FABULOUS interacts with the Fedora&#8482; Repository, providing a simple and
   easy to use interface which extends the functions of fedora and ways to manipulate
@@ -46,14 +52,14 @@ allows user to browse through the various functions available.</p>
   at the same time.</p>
 <p>To activate a datastream/s:</p>
 <ol>
-  <li>Select 'Activate Datastream' from the navigation menu.</li>
+  <li>Select 'Activate Datastream' from the Home/Manual Search Selection menu.</li>
   <li>    Search for a particular object. (See the Search section for a more detailed
   explanation of search methods available)</li>
   <li>    All datastreams for each objects which are currently deactivated and
     may be activated will be displayed with a selection box. Select which datastream/s
   to activate.</li>
-  <li>    Click on the 'Deactivate' button.</li>
-  <li>    A results page will appear displaying .... &lt;to be done&gt;</li>
+  <li>    Click on the 'Activate' button.</li>
+  <li>    A results page will appear displaying the result.</li>
 </ol>
 <p><em>User Case Example:<br>
   If a copyright owner had recently given consent to the publication of their
@@ -69,13 +75,13 @@ for the publications that have an expired embargoed period.</em></p>
   invisible and inaccessible for users of the repository. </p>
 <p>To deactivate a datastream:</p>
 <ol>
-  <li>Select 'De-activate Datastream' from the navigation menu.</li>
+  <li>Select 'De-activate Datastream' from the Home/Manual Search Selection menu.</li>
   <li>    Search for a particular object. (See the Search section for a more detailed
   explanation of search methods available)</li>
   <li>    All datastreams which are currently activated and may be deactivated will
   be displayed with a selection box. Select which datastream/s to deactivate. </li>
   <li>    Click on the 'Deactivate' button.</li>
-  <li>    A results page will appear displaying ....</li>
+  <li>    A results page will appear displaying the result.</li>
 </ol>
 <p><em>User Case Example:<br>
   A copyright owner has withdrawn permission for the publication of research
@@ -88,7 +94,7 @@ the CONTENT datastream for the owners objects.</em></p>
 </ol>
 <h2>Search</h2>
 <p><strong>Searching</strong></p>
-<p>Searches can be performed on any fields of an object including the unique
+<p>Searches can be performed on any DC field of an object including the unique
   identifier (PID), title, author, type and date.</p>
 <p><em>The user can enter a word or a phrase into the search box.
   A single word such as health my be entered with the * truncation, or wildcard
@@ -103,34 +109,6 @@ the CONTENT datastream for the owners objects.</em></p>
   objects where both the term market and reform appear, but not necessarily in
   that order.</em></p>
 
-<h2>Batch Content Ingest</h2>
-<p>The Batch content ingest function allows a user to insert multiple content
-  files into the repository. These content files can be for the same object or
-  for a number of different objects (or both). The application automatically
-  links the content files to their associated metadata files without the need
-  to re-ingest the metadata files. Files being ingested need to follow a strict
-  naming convention in order to be uploaded and associated with their metadata
-  files. </p>
-<p>File naming convention: All ingested files must have the same filename as
-  their associated metadata. Where there are multiple content files for the same
-  object, files being ingested must follow the naming convention of:</p>
-<p>To perform a batch content ingest:</p>
-<ol>
-  <li>Select 'Batch Content Ingest' from the navigation menu</li>
-  <li>    For each file to be ingested &gt; select 'Browse' and navigate
-    to the location of the file then select. Ensure all files being ingested
-    follow the correct naming conventions.</li>
-  <li>    Once all files have been selected, click on 'Upload'</li>
-  <li>    A results page will appear displaying the result of the ingest process.</li>
-</ol>
-<p>Notes:</p>
-<ol>
-  <li>File naming convention: When ingesting files, each file name must correspond
-    to its associated metadata filename. i.e. when uploading xxx.xml unisa:xxx.asdf &gt; xxx.asdf</li>
-</ol>
-<p>Note: The maximum file length (not including the file extension) is 15 characters.
-  Anything over that will be cut to only 15 characters. Valid file types include:
-  txt, xml, doc, pdf, gif, and jpg.</p>
 <h2>Batch Metadata Editing</h2>
 <p>Due to complex objects used by ARROW implementation of Fedora, various datastreams with varied states are associated with a single object. Updates would be applied to MARCXML and DC metadata datastreams only.</p>
  <p><strong>Global editing of metadata (Find and Replace). </strong></p>

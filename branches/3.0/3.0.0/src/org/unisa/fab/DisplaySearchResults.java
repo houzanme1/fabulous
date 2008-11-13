@@ -31,6 +31,14 @@ import fedora.server.types.gen.ObjectFields;
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+response.setContentType("text/html;charset=UTF-8");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/result.jsp");
+        request.setAttribute("title", "Error");
+       
+        request.setAttribute("heading", "Submission from Third Party Interface!");
+        request.setAttribute("body", "Error happened while Processing the Request. Please go back and try again!");
+	    rd.forward(request, response);
 	}  	
 	
 	/* (non-Java-doc)
@@ -163,7 +171,7 @@ import fedora.server.types.gen.ObjectFields;
     			String id=(String)datastreamList.get(k);
     			String value=pid+"|"+id;
     			str.append("<input type=\"checkbox\" name=\"checkedPids\" value=\""+value+"\"/>"+id+"<br>");
-    			//str.append(""+(String)datastreamList.get(k)+"</ul>");
+    			
     			}
     			str.append("</td>");
 
@@ -458,7 +466,7 @@ import fedora.server.types.gen.ObjectFields;
 			
 				String [] paramNext=request.getParameterValues("checkedPids");
 			for(int i=0; i<paramNext.length; i++) {
-	            //str.append("<LI>" + paramNext[i]);
+	           
 				//you have selected PID's
 				try
 				{
@@ -479,11 +487,11 @@ import fedora.server.types.gen.ObjectFields;
 			}
 			try
 			{
-			//str.append("you have pressed activate");
+			
 				String [] paramNext2=request.getParameterValues("prevSelection");
 			
 			for(int i=0; i<paramNext2.length; i++) {
-	            //str.append("<LI>" + paramNext2[i]);
+	            
 				//you have selected PID's
 				try
 				{
@@ -510,12 +518,12 @@ import fedora.server.types.gen.ObjectFields;
 			
 				String [] paramNext=request.getParameterValues("checkedPids");
 			for(int i=0; i<paramNext.length; i++) {
-	            //str.append("<LI>" + paramNext[i]);
+	            
 				//you have selected PID's
 				try
 				{
 				String[] result = paramNext[i].split("\\|");
-				//str.append("<div class=\"ack\">result[0] "+result[0]+" result[1] "+result[1]+"</div>");
+				
 				
 				String timestamp=fed.setDatastreamState(result[0], result[1],"I", "log");
 	    		str.append("<div class=\"ack\">The Datastream "+paramNext[i]+" successfully De-Activated with acknowledged timestamp "+timestamp+"</div>");
@@ -532,11 +540,11 @@ import fedora.server.types.gen.ObjectFields;
 			}
 			try
 			{
-			//str.append("you have pressed activate");
+			
 				String [] paramNext2=request.getParameterValues("prevSelection");
 			
 			for(int i=0; i<paramNext2.length; i++) {
-	            //str.append("<LI>" + paramNext2[i]);
+	            
 				//you have selected PID's
 				try
 				{
@@ -557,6 +565,7 @@ import fedora.server.types.gen.ObjectFields;
 		}
 		else if (buttonValue.compareToIgnoreCase("batch-edit")==0)
 		{
+			String path =request.getContextPath();
 			heading="batch-edit Object Selection";
 			StringBuffer tempB = new StringBuffer();
 			int count=0;
@@ -565,7 +574,9 @@ import fedora.server.types.gen.ObjectFields;
 			String [] paramNext=request.getParameterValues("checkedPids");
 			
 			for(int i=0; i<paramNext.length; i++) {
-	            str.append("<LI>" + paramNext[i]);
+				
+	            str.append("<li><a href=\""+path+"/DisplayMarcxmlAsFormServlet?pid="+paramNext[i]+"\">"+paramNext[i]+"</a></li>");
+    			
 				//you have selected PID's
 				count++;
 				tempB.append("<input type=hidden name=\"selectedPids\" value=\""+paramNext[i]+"\">");
@@ -581,7 +592,9 @@ import fedora.server.types.gen.ObjectFields;
 			String [] paramNext2=request.getParameterValues("prevSelection");
 			
 			for(int i=0; i<paramNext2.length; i++) {
-	            str.append("<LI>" + paramNext2[i]);
+	           
+	            str.append("<li><a href=\""+path+"/DisplayMarcxmlAsFormServlet?pid="+paramNext2[i]+"\">"+paramNext2[i]+"</a></li>");
+    			
 				//you have selected PID's
 				count++;
 				tempB.append("<input type=hidden name=\"selectedPids\" value=\""+paramNext2[i]+"\">");
@@ -616,7 +629,7 @@ import fedora.server.types.gen.ObjectFields;
 			
 				String [] paramNext=request.getParameterValues("checkedPids");
 			for(int i=0; i<paramNext.length; i++) {
-	            //str.append("<LI>" + paramNext[i]);
+	            
 				//you have selected PID's
 				try
 				{
@@ -635,11 +648,11 @@ import fedora.server.types.gen.ObjectFields;
 			}
 			try
 			{
-			//str.append("you have pressed activate");
+			
 				String [] paramNext2=request.getParameterValues("prevSelection");
 			
 			for(int i=0; i<paramNext2.length; i++) {
-	            //str.append("<LI>" + paramNext2[i]);
+	            
 				//you have selected PID's
 				try
 				{
@@ -673,7 +686,7 @@ import fedora.server.types.gen.ObjectFields;
 				str.append("<div class=\"ack\">Replacing "+Source[0]+" with "+destination[0]+" </div>");
 				
 			for(int i=0; i<paramNext.length; i++) {
-	            //str.append("<LI>" + paramNext[i]);
+	           
 				//you have selected PID's
 				try
 				{
@@ -704,8 +717,7 @@ import fedora.server.types.gen.ObjectFields;
 		        String realPath = context.getRealPath("/WEB-INF/stylesheet");
 		        String propertyPath = realPath+"/marc2dc.xslt"; 
 				
-		      //  str.append("<div class=\"error\"> Datafield: "+datafield[0]+" ind1:"+ind1[0]+" ind2:"+ind2[0]+"</div>");
-				
+		     	
 				
 				Enumeration paramNames = request.getParameterNames();
 			    while(paramNames.hasMoreElements()) {
@@ -723,23 +735,20 @@ import fedora.server.types.gen.ObjectFields;
 			    			
 			    		}
 			    		
-			    		// str.append("<div class=\"error\"> subfield: "+code+"|"+value+"</div>");
-							
+			    			
 			    	}
 			    	
-				   // String[] paramValues = request.getParameterValues(paramName);
-			    }
+				   }
 			    
 			
 				String [] paramNext=request.getParameterValues("selectedPids");
 			for(int i=0; i<paramNext.length; i++) {
-	            //str.append("<LI>" + paramNext[i]);
+	            
 				//you have selected PID's
 				try
 				{
 				
-	    		//str.append("<div class=\"ack\">The Object "+paramNext[i]+" successfully selected for Editing </div>");
-				str.append("<div class=\"ack\">INFO: "+fed.addDatafieldInDatastream(paramNext[i], datafield[0], ind1[0], ind2[0],subfields, "edited using Fabulous version 3", propertyPath)+"</div>");
+	    		str.append("<div class=\"ack\">INFO: "+fed.addDatafieldInDatastream(paramNext[i], datafield[0], ind1[0], ind2[0],subfields, "edited using Fabulous version 3", propertyPath)+"</div>");
 					
 				}
 				catch(FabulousException E)
@@ -769,14 +778,13 @@ import fedora.server.types.gen.ObjectFields;
 				
 				String [] paramNext=request.getParameterValues("selectedPids");
 			for(int i=0; i<paramNext.length; i++) {
-	            //str.append("<LI>" + paramNext[i]);
+	            
 				//you have selected PID's
 				try
 				{
 					str.append("<div class=\"ack\">INFO: "+fed.RemoveDatafieldInDatastream(paramNext[i], tag[0], "edited using Fabulous version 3", propertyPath)+"</div>");
 					
-	    		//str.append("<div class=\"ack\">The Object "+paramNext[i]+" successfully selected for Editing </div>");
-				}
+	    		}
 				catch(FabulousException E)
 				{
 					str.append("<div class=\"error\">"+E.toString()+"</div>");
@@ -801,8 +809,7 @@ import fedora.server.types.gen.ObjectFields;
         
         RequestDispatcher rd = request.getRequestDispatcher("/result.jsp");
         request.setAttribute("title", title);
-       // request.setAttribute("heading", "Search Results for Term \""+searchString+"\"");
-        request.setAttribute("heading", heading);
+       request.setAttribute("heading", heading);
         request.setAttribute("body", output);
 	    rd.forward(request, response);
 	} 
@@ -846,11 +853,11 @@ import fedora.server.types.gen.ObjectFields;
 
 	   tempString.append("<tr>");
 	     tempString.append("<td width=\"25%\">Find What:</td>");
-	     tempString.append("<td><input name=source></td>");
+	     tempString.append("<td><input size=\"70\" name=source></td>");
 	   tempString.append("</tr>");
 	   tempString.append("<tr>");
 	     tempString.append("<td width=\"25%\">Replace with:</td>");
-	     tempString.append("<td><input name=destination></td>");
+	     tempString.append("<td><input size=\"70\" name=destination></td>");
 	   tempString.append("</tr>");
 
 	   tempString.append("</TBODY>");

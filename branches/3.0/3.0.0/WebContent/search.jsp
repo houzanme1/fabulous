@@ -380,7 +380,7 @@ else if(options.compareToIgnoreCase("DEFAULT")== 0)
         <select name="QueryTag">
 				<option value="1">Title</option>
 				<option value="2">Creator</option>
-				<option value="3" selected>Keyword Search</option>
+				<option value="3" selected>Phrase Search</option>
 			</select>
 			
 			<input type="text" name="searchString" size="100"/>
@@ -406,6 +406,7 @@ else if(options.compareToIgnoreCase("DEFAULT")== 0)
 		
 	<%
 }
+
 
 %>
 
