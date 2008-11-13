@@ -23,10 +23,12 @@
 	<br>
 	<br>
 	
-	<input type="radio" name="options" value="RW"> Repository Wide selection
+	<input type="radio" name="options" value="RW" DISABLED> Repository Wide selection
 
 <input type="radio" name="options" value="DEFAULT" checked> Manual Search Selection
-	
+<p>
+<em>Note: Included for future release. Use this functionality (multiple selection) through the third party Front end applications such as VITAL etc by following the user guide.</em>
+  </p>	
 	
 	<br>
 	<br>

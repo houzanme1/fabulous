@@ -205,19 +205,7 @@ public void createResultList(ObjectFields[] results)
 			resultList.append(results[i].getTitle(0)+ System.getProperty("line.separator"));
 			resultList.append("</title>"+ System.getProperty("line.separator"));
 			
-			/*
-			resultList.append("<creator>"+ System.getProperty("line.separator"));
-			resultList.append(results[i].getCreator(0)+ System.getProperty("line.separator"));
-			resultList.append("</creator>"+ System.getProperty("line.separator"));
 			
-			resultList.append("<type>"+ System.getProperty("line.separator"));
-			resultList.append(results[i].getType(0)+ System.getProperty("line.separator"));
-			resultList.append("</type>"+ System.getProperty("line.separator"));
-			
-			resultList.append("<date>"+ System.getProperty("line.separator"));
-			resultList.append(results[i].getDate(0)+ System.getProperty("line.separator"));
-			resultList.append("</date>"+ System.getProperty("line.separator"));
-			*/
 			resultList.append("<state>"+ System.getProperty("line.separator"));
 			resultList.append(results[i].getState()+ System.getProperty("line.separator"));
 			resultList.append("</state>"+ System.getProperty("line.separator"));
@@ -243,6 +231,22 @@ public  byte[] getDatastream(String datastreamId)throws FabulousException, Trans
    }
        catch(Exception exp){
     	   FabulousException exception = new FabulousException("Failed getting Datastream with ID "+datastreamId+" and PID "+pid,exp.toString());
+    	   throw exception;}
+
+       
+   
+}
+
+public  byte[] getMarcDatastream()throws FabulousException, TransformerException, TransformerConfigurationException, FileNotFoundException, IOException
+{
+  
+   try
+   {
+      
+      return apia.getDatastreamDissemination(pid,marcItemID,null).getStream();
+   }
+       catch(Exception exp){
+    	   FabulousException exception = new FabulousException("Failed getting Datastream with ID "+marcItemID+" and PID "+pid,exp.toString());
     	   throw exception;}
 
        
@@ -332,16 +336,16 @@ public  byte[]  writeFoxml(String pidLocal,  String marcxml, String dc, String l
    foxml.append ("<foxml:property NAME=\"info:fedora/fedora-system:def/model#state\" VALUE=\"A\"></foxml:property>");
    foxml.append ("<foxml:property NAME=\"info:fedora/fedora-system:def/model#label\" VALUE=\""+label+"\"></foxml:property>");
    foxml.append("</foxml:objectProperties>");
-   foxml.append("<foxml:datastream CONTROL_GROUP=\"X\" ID=\"DC\" STATE=\"A\" VERSIONABLE=\"true\">");
-   foxml.append("<foxml:datastreamVersion ID=\"DC.0\" LABEL=\"Dublin Core\" MIMETYPE=\"text/xml\">");
+   foxml.append("<foxml:datastream CONTROL_GROUP=\"X\" ID=\""+dCItemID+"\" STATE=\"A\" VERSIONABLE=\"true\">");
+   foxml.append("<foxml:datastreamVersion ID=\""+dCItemID+".0\" LABEL=\"Dublin Core\" MIMETYPE=\"text/xml\">");
    foxml.append("<foxml:xmlContent>");
    foxml.append(dc);
    foxml.append("</foxml:xmlContent>");
    foxml.append("</foxml:datastreamVersion>");
    foxml.append("</foxml:datastream>"); 
   
-   foxml.append("<foxml:datastream CONTROL_GROUP=\"X\" ID=\"MARCDESC\" STATE=\"I\" VERSIONABLE=\"true\">");
-   foxml.append("<foxml:datastreamVersion ID=\"MARCDESC.0\" LABEL=\"Marc21 xml\" MIMETYPE=\"text/xml\">");
+   foxml.append("<foxml:datastream CONTROL_GROUP=\"X\" ID=\""+marcItemID+"\" STATE=\"I\" VERSIONABLE=\"true\">");
+   foxml.append("<foxml:datastreamVersion ID=\""+marcItemID+".0\" LABEL=\"Marc21 xml\" MIMETYPE=\"text/xml\">");
    foxml.append("<foxml:xmlContent>");
    foxml.append(marcxml);
    foxml.append("</foxml:xmlContent>");
@@ -463,7 +467,8 @@ public String processNewRecord(String pidNamespace, String marcxml, String style
 		byte[] tempDc =marc2dcTransform(stylesheetPath, marcxml,pid );
         String dc=new String(tempDc);
         //remove xml syntax out of the newly created xml
-        dc=dc.substring(39);
+        int num=dc.indexOf(">");
+        dc=dc.substring(num+1);
         
         return ingestObject(writeFoxml(pid,  marcxml, dc, label));
         
@@ -691,8 +696,6 @@ public String xmlValidate(String xml)
  // create a SchemaFactory capable of understanding WXS schemas
     SchemaFactory factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
 
-    // load a WXS schema, represented by a Schema instance
-   // Source schemaFile = new StreamSource(new File("MARC21slim.xsd"));
     
     InputStream IS = Thread.currentThread().getContextClassLoader().getResourceAsStream("/org/unisa/fab/MARC21slim.xsd");
     Source schemaFile=new StreamSource(IS);

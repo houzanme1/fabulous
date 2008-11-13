@@ -41,23 +41,13 @@ public class MarcXML {
 		buffer.append("<marc:record>");
 		processMarcXML();
 		buffer.append("<marc:leader>"+leader+"</marc:leader>");
-		/*
-		for(int i=0;i<controlFields.size();i++)
-		{
-		buffer.append(((ControlField)controlFields.get(i)).getXml());
-		}
-		*/
+		
 		 //fix for the control fields being displayed in reverse order Date:17/06/2008
 		for(int i=controlFields.size()-1;i>=0;i--)
 		{
 		buffer.append(((ControlField)controlFields.get(i)).getXml());
 		}
-		/*
-		for(int j=0;j<dataFields.size();j++)
-		{
-			buffer.append(((DataField)dataFields.get(j)).getXml());
-		}
-		*/
+		
 		 //fix for the data fields being displayed in reverse order Date:17/06/2008
 		for(int j=dataFields.size()-1;j>=0;j--)
 		{
@@ -78,8 +68,6 @@ public class MarcXML {
 	 // create a SchemaFactory capable of understanding WXS schemas
 	    SchemaFactory factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
 
-	    // load a WXS schema, represented by a Schema instance
-	   // Source schemaFile = new StreamSource(new File("MARC21slim.xsd"));
 	    
 	    InputStream IS = Thread.currentThread().getContextClassLoader().getResourceAsStream("/org/unisa/fab/MARC21slim.xsd");
 	    Source schemaFile=new StreamSource(IS);
@@ -249,12 +237,7 @@ class DataField {
 	 StringBuffer buf = new StringBuffer("");
 	 buf.append("<marc:datafield tag=\""+this.tag+"\" ind1=\""+this.ind1+"\" ind2=\""+this.ind2+"\">");
 	 
-	 /*
-	 for(int j=0;j<subFieldList.size();j++)
-		{
-			buf.append(((Subfield)subFieldList.get(j)).getXml());
-		}
-	 */
+	 
 	 //fix for the subfield being displayed in reverse order Date:17/06/2008
 	 for(int j=subFieldList.size()-1;j>=0;j--)
 		{

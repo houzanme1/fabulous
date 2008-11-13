@@ -52,7 +52,6 @@ import javax.servlet.http.HttpServletResponse;
 	    {
 	      String paramName = (String)paramNames.nextElement();     
 	      String[] paramValues = request.getParameterValues(paramName);
-	       // String paramValue = paramValues[0];
 	        
 	        if(paramName.compareTo("pidNamespace")==0)
 	        {
@@ -74,32 +73,7 @@ import javax.servlet.http.HttpServletResponse;
         Date now= new Date();
         body = fed.processNewRecord(pidNamespace, marcxml.getMarcXML(), propertyPath, pidNamespace+now.toString());
     
-        /*
-        // testing
-        String pidnew=fed.getNextPid(pidNamespace);
-        String marc= marcxml.getMarcXML();
-        
-        body= body+"<MARC>"+marc+"</MARC>";
-		byte[] tempDc =fed.marc2dcTransform(propertyPath, marc,pidnew );
-        String dc=new String(tempDc);
        
-        //remove xml syntax out of the newly created xml
-        dc=dc.substring(39);
-        body= body+"<DC>"+dc+"</DC>";
-        byte [] foxml = fed.writeFoxml(pidnew,  marc, dc, pidNamespace+now.toString());
-        body= body+"<FOXML>"+new String(foxml)+"</FOXML>";
-        String op=fed.ingestObject(foxml);
-        body= body+"<OP>"+op+"</OP>";
-        
-        
-        //
-	    
-	    //create foxml
-	    //// create DC
-	    //// get PID for the namespace 
-	    //ingest foxml
-        
-        */
 	    }
 	    catch(FabulousException exception)
 	    {

@@ -29,16 +29,11 @@ import javax.servlet.*;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
-       // PrintWriter out = response.getWriter();
         String pid = request.getParameter("pid").toString();
-        
-      //  FedoraInterface fed = new FedoraInterface(pid);
-      //  String value= fed.getPid();
         String tempV="";
         try
         {
        
-        
      // get the servlet context
         ServletContext context = getServletContext();
 
@@ -49,7 +44,8 @@ import javax.servlet.*;
         String propertyPath = realPath+"/marc2htmlForm.xslt"; 
 
       FedoraInterface fed = new FedoraInterface(context.getRealPath("/WEB-INF/settings")+"/fabulous.properties",pid);
-      byte[] temp = fed.getDatastream("MARCDESC");
+      
+      byte[] temp = fed.getMarcDatastream();
       byte[] marc= fed.transformXML(temp, propertyPath);
         
         tempV= new String(marc);
@@ -79,44 +75,6 @@ import javax.servlet.*;
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*
-		response.setContentType("text/html;charset=UTF-8");
-       // PrintWriter out = response.getWriter();
-        String pid = request.getParameter("pid").toString();
-        
-        FedoraInterface fed = new FedoraInterface(pid);
-        String value= fed.getPid();
-        String tempV;
-        try
-        {
-       
-        
-     // get the servlet context
-        ServletContext context = getServletContext();
-
-        // directory name where the file is located
-        String realPath = context.getRealPath("/WEB-INF/stylesheet");
-
-        // get real path to your file
-        String propertyPath = realPath+"\\marc2htmlForm.xslt"; 
-
-      byte[] temp = fed.getDatastream("MARCDESC");
-      byte[] marc= fed.transformXML(temp, propertyPath);
-        
-        tempV= new String(marc);
-        }
-        catch(Exception ex)
-        {
-        	tempV=ex.getMessage();
-        }
-
-
-        
-        RequestDispatcher rd = request.getRequestDispatcher("/result.jsp");
-        request.setAttribute("title", "Marcxml Edit Form");
-        request.setAttribute("heading", "MarcXML for Record "+value);
-	    request.setAttribute("body", "<form action=\"ProcessMetadataFormServlet\" method=\"POST\">"+tempV+"<input type=\"submit\" value=\"Save\"/>");
-	    rd.forward(request, response);
-	    */
+		
 	}   	  	    
 }
