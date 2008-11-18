@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Main-Class: org.unisa.fabIngest.FabIngestDriver
+Class-Path: lib/fedora-client.jar lib/activation-1.0.2.jar lib/axis.jar lib/batik-all.jar li
+ b/commons-codec-1.3.jar lib/commons-dbcp-1.2.1.jar lib/commons-discov
+ ery.jar lib/commons-httpclient-3.1-beta1.jar lib/commons-logging.jar 
+ lib/log4j-1.2.14.jar lib/commons-pool-1.2.jar lib/java-getopt-1.0.11.
+ jar lib/jai_codec.jar lib/jai_core.jar lib/mail.jar lib/jaxrpc.jar li
+ b/jhbasic.jar lib/jrdf-0.3.3.jar lib/saaj.jar lib/saxon.jar lib/sunxa
+ cml-patched.jar lib/trippi-1.1.2-core.jar lib/wsdl4j-1.5.1.jar lib/xe
+ rcesImpl.jar lib/xml-apis.jar
+
