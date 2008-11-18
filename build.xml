@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?><!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="FabulousIngest">
+   <property environment="env"/>
+   <property name="ECLIPSE_HOME" value="../../eclipse"/>
+   <property name="debuglevel" value="source,lines,vars"/>
+   <property name="target" value="1.6"/>
+   <property name="source" value="1.6"/>
+   <path id="FabulousIngest.classpath">
+      <pathelement location="bin"/>
+      <pathelement location="lib/activation-1.0.2.jar"/>
+      <pathelement location="lib/axis.jar"/>
+      <pathelement location="lib/batik-all.jar"/>
+      <pathelement location="lib/commons-codec-1.3.jar"/>
+      <pathelement location="lib/commons-dbcp-1.2.1.jar"/>
+      <pathelement location="lib/commons-discovery.jar"/>
+      <pathelement location="lib/commons-httpclient-3.1-beta1.jar"/>
+      <pathelement location="lib/commons-logging.jar"/>
+      <pathelement location="lib/commons-pool-1.2.jar"/>
+      <pathelement location="lib/dnsns.jar"/>
+      <pathelement location="lib/fedora-client.jar"/>
+      <pathelement location="lib/jai_codec.jar"/>
+      <pathelement location="lib/jai_core.jar"/>
+      <pathelement location="lib/java-getopt-1.0.11.jar"/>
+      <pathelement location="lib/jaxrpc.jar"/>
+      <pathelement location="lib/jhbasic.jar"/>
+      <pathelement location="lib/jrdf-0.3.3.jar"/>
+      <pathelement location="lib/log4j-1.2.14.jar"/>
+      <pathelement location="lib/mail.jar"/>
+      <pathelement location="lib/ojdbc14.jar"/>
+      <pathelement location="lib/saaj.jar"/>
+      <pathelement location="lib/saxon.jar"/>
+      <pathelement location="lib/sunjce_provider.jar"/>
+      <pathelement location="lib/sunmscapi.jar"/>
+      <pathelement location="lib/sunpkcs11.jar"/>
+      <pathelement location="lib/sunxacml-patched.jar"/>
+      <pathelement location="lib/trippi-1.1.2-core.jar"/>
+      <pathelement location="lib/wsdl4j-1.5.1.jar"/>
+      <pathelement location="lib/xercesImpl.jar"/>
+      <pathelement location="lib/xml-apis.jar"/>
+   </path>
+   <target name="init">
+      <mkdir dir="bin"/>
+      <copy includeemptydirs="false" todir="bin">
+         <fileset dir="src" excludes="**/*.launch, **/*.java"/>
+      </copy>
+   </target>
+   <target name="clean">
+      <delete dir="bin"/>
+   </target>
+   <target depends="clean" name="cleanall"/>
+   <target depends="build-subprojects,build-project" name="build"/>
+   <target name="build-subprojects"/>
+   <target depends="init" name="build-project">
+      <echo message="${ant.project.name}: ${ant.file}"/>
+      <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+         <src path="src"/>
+         <classpath refid="FabulousIngest.classpath"/>
+      </javac>
+   </target>
+   <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+   <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+      <copy todir="${ant.library.dir}">
+         <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+      </copy>
+      <unzip dest="${ant.library.dir}">
+         <patternset includes="jdtCompilerAdapter.jar"/>
+         <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+      </unzip>
+   </target>
+   <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+      <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+      <antcall target="build"/>
+   </target>
+   <target name="FabIngestDriver">
+      <java classname="org.unisa.fabIngest.FabIngestDriver" failonerror="true" fork="yes">
+         <classpath refid="FabulousIngest.classpath"/>
+      </java>
+   </target>
+</project>
