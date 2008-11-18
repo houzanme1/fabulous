@@ -71,7 +71,8 @@ import javax.servlet.http.HttpServletResponse;
         String propertyPath = realPath+"/marc2dc.xslt"; 
         FedoraInterface fed = new FedoraInterface(context.getRealPath("/WEB-INF/settings")+"/fabulous.properties");
         Date now= new Date();
-        body = fed.processNewRecord(pidNamespace, marcxml.getMarcXML(), propertyPath, pidNamespace+now.toString());
+       // body = fed.processNewRecord(pidNamespace, marcxml.getMarcXML(), propertyPath, pidNamespace+now.toString());
+        body = fed.processNewRecord(marcxml.getMarcXML(), propertyPath, pidNamespace+now.toString());
     
        
 	    }

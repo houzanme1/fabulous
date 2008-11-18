@@ -32,6 +32,7 @@ public class FedoraInterface {
     private  String dCItemID;
     private  String marcAlternateID;
     private  String handlePrefix;
+    private  String namespacePrefix;
     private  String token = "";
 	private  String pid = "";
 	private  FedoraClient fed ;
@@ -90,6 +91,7 @@ public void ReadConfig(String configFile) throws IOException
 			this.dCItemID=read.getvalue("DCItemID");
 			this.marcAlternateID=read.getvalue("MarcAlternateID");
 			this.handlePrefix=read.getvalue("HandlePrefix");
+			this.namespacePrefix=read.getvalue("namespacePrefix");
 
 		
     	
@@ -464,6 +466,27 @@ public String processNewRecord(String pidNamespace, String marcxml, String style
 	try
 	{
 		String pid=getNextPid(pidNamespace);
+		byte[] tempDc =marc2dcTransform(stylesheetPath, marcxml,pid );
+        String dc=new String(tempDc);
+        //remove xml syntax out of the newly created xml
+        int num=dc.indexOf(">");
+        dc=dc.substring(num+1);
+        
+        return ingestObject(writeFoxml(pid,  marcxml, dc, label));
+        
+           
+	}
+	catch (Exception exp){
+        FabulousException exception = new FabulousException("Failed Processing New Record",exp.toString());
+        throw exception;
+        }
+}
+
+public String processNewRecord(String marcxml, String stylesheetPath, String label)
+{
+	try
+	{
+		String pid=getNextPid(namespacePrefix);
 		byte[] tempDc =marc2dcTransform(stylesheetPath, marcxml,pid );
         String dc=new String(tempDc);
         //remove xml syntax out of the newly created xml
